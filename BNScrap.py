@@ -61,20 +61,16 @@ def GatherCompleteSummaryPages():
     return(ListeLiens)
 	
 def WriteSummary(listeLiens, outPath="OEBPS/toc.html"):
-    html_doc = """
-<html>
-   <body>
-     <h1>Table of Contents</h1>
-     <p style="text-indent:0pt">
-
+    html_doc = """<body>
+    <h1>Table of Contents</h1>
+    <p style="text-indent:0pt">
 """
     for lien in listeLiens:
         MakeAWebpage(lien)
         chapterName = (lien).split("/")[-1]
-        html_doc = html_doc + "     <a href=" + "\"" + chapterName + ".html\">" + chapterName + "</a><br/>" + "\r\n"
-    html_doc += """
-     </p>
-   </body>
+        html_doc = html_doc + "      <a href=" + "\"" + chapterName + ".html\">" + chapterName + "</a><br/>" + "\r\n"
+    html_doc += """    </p>
+  </body>
 </html>
     """
     tocHTML = cs.open(outPath, 'w', 'utf-8')
